@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>এডমিন প্যানেল - প্রভাত নিউজ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Siyam Rupali', 'SolaimanLipi', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* হেডার স্টাইল */
+        header {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: white;
+            color: #d32f2f;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* মেইন কন্টেন্ট */
+        main {
+            flex: 1;
+            padding: 2rem 0;
+        }
+        
+        .admin-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-header h1 {
+            color: #b71c1c;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        /* লগিন ফর্ম */
+        .login-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin: 3rem auto;
+            max-width: 450px;
+        }
+        
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #b71c1c;
+        }
+        
+        /* এডমিন প্যানেল */
+        .admin-panel {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+        }
+        
+        .admin-panel h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #b71c1c;
+            font-size: 1.8rem;
+        }
+        
+        /* ফর্ম স্টাইল */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #444;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d32f2f;
+            box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        small {
+            display: block;
+            margin-top: 0.4rem;
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .btn {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background-color: #b71c1c;
+        }
+        
+        .btn-secondary {
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+        
+        /* নোটিফিকেশন */
+        .notification {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* রেসপনসিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .login-form,
+            .admin-panel {
+                padding: 1.5rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- হেডার -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-circle">PN</span> প্রভাত নিউজ
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">ওয়েবসাইট</a></li>
+                    <li><a href="#">লগআউট</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- মেইন কন্টেন্ট -->
+    <main>
+        <div class="container">
+            <!-- লগইন ফর্ম (ডিফল্টভাবে দেখাবে) -->
+            <section id="login-section" class="login-form">
+                <h2>এডমিন লগইন</h2>
+                <div class="form-group">
+                    <label for="username">ইউজারনেম</label>
+                    <input type="text" id="username" placeholder="ইউজারনেম দিন">
+                </div>
+                <div class="form-group">
+                    <label for="password">পাসওয়ার্ড</label>
+                    <input type="password" id="password" placeholder="পাসওয়ার্ড দিন">
+                </div>
+                <button class="btn" onclick="login()">লগইন</button>
+                <div id="login-notification"></div>
+            </section>
+
+            <!-- এডমিন প্যানেল (লগিন করলে দেখাবে) -->
+            <section id="admin-panel" class="admin-panel" style="display: none;">
+                <h2>নতুন নিউজ পোস্ট যোগ করুন</h2>
+                <div class="form-group">
+                    <label for="news-title">শিরোনাম</label>
+                    <input type="text" id="news-title" placeholder="খবরের শিরোনাম লিখুন">
+                </div>
+                <div class="form-group">
+                    <label for="news-content">বিস্তারিত</label>
+                    <textarea id="news-content" placeholder="খবরের বিস্তারিত লিখুন"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="news-image">Google Drive ছবির লিংক</label>
+                    <input type="text" id="news-image" placeholder="Google Drive থেকে ছবির লিংক দিন">
+                    <small>Google Drive-তে ছবি আপলোড করে শেয়ারযোগ্য লিংকটি এখানে পেস্ট করুন</small>
+                </div>
+                <div class="form-actions">
+                    <button class="btn" onclick="addNews()">পোস্ট যোগ করুন</button>
+                    <button class="btn btn-secondary" onclick="clearForm()">ফর্ম রিসেট</button>
+                    <a href="index.html" class="btn btn-secondary">ওয়েবসাইট দেখুন</a>
+                </div>
+                <div id="admin-notification"></div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // লগইন ফাংশন
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === 'admin' && password === 'admin123') {
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'block';
+            } else {
+                document.getElementById('login-notification').innerHTML = 
+                    '<div class="notification error">ভুল ইউজারনেম বা পাসওয়ার্ড</div>';
+            }
+        }
+        
+        // খবর যোগ করার ফাংশন
+        function addNews() {
+            const title = document.getElementById('news-title').value;
+            const content = document.getElementById('news-content').value;
+            const imageUrl = document.getElementById('news-image').value;
+            
+            if (title && content) {
+                let newsData = JSON.parse(localStorage.getItem('provatNewsData')) || [];
+                
+                const newNews = {
+                    id: Date.now(),
+                    title: title,
+                    content: content,
+                    image: imageUrl || 'https://via.placeholder.com/400x200?text=Provat+News',
+                    date: new Date().toLocaleDateString('bn-BD')
+                };
+                
+                newsData.unshift(newNews);
+                localStorage.setItem('provatNewsData', JSON.stringify(newsData));
+                
+                document.getElementById('admin-notification').innerHTML = 
+                    '<div class="notification success">খবর সফলভাবে যোগ করা হয়েছে!</div>';
+                
+                clearForm();
+            } else {
+                document.getElementById('admin-notification').innerHTML = 
+                    '<div class="notification error">শিরোনাম এবং বিস্তারিত পূরণ করুন</div>';
+            }
+        }
+        
+        // ফর্ম ক্লিয়ার করার ফাংশন
+        function clearForm() {
+            document.getElementById('news-title').value = '';
+            document.getElementById('news-content').value = '';
+            document.getElementById('news-image').value = '';
+            document.getElementById('admin-notification').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

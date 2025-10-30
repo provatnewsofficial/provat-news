@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রভাত নিউজ - Provat News</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="প্রভাত নিউজ - বাংলাদেশের বিশ্বস্ত সংবাদ মাধ্যম। সর্বশেষ খবর জানুন প্রথমেই। আলো ছড়িয়ে যাক গ্রাম থেকে শহরে।">
+    <meta name="keywords" content="বাংলাদেশ, খবর, সংবাদ, নিউজ, প্রভাত নিউজ, বাংলাদেশ সংবাদ, বাংলা নিউজ, সর্বশেষ খবর">
+    <meta name="author" content="প্রভাত নিউজ">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Bengali">
+    <meta name="revisit-after" content="1 days">
+    <meta name="theme-color" content="#d32f2f">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-website-url/">
+    <meta property="og:title" content="প্রভাত নিউজ - Provat News">
+    <meta property="og:description" content="বাংলাদেশের বিশ্বস্ত সংবাদ মাধ্যম। সর্বশেষ খবর জানুন প্রথমেই।">
+    <meta property="og:image" content="https://your-website-url/logo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-website-url/">
+    <meta property="twitter:title" content="প্রভাত নিউজ - Provat News">
+    <meta property="twitter:description" content="বাংলাদেশের বিশ্বস্ত সংবাদ মাধ্যম। সর্বশেষ খবর জানুন প্রথমেই।">
+    <meta property="twitter:image" content="https://your-website-url/logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://your-website-url/" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsMediaOrganization",
+      "name": "প্রভাত নিউজ",
+      "url": "https://your-website-url/",
+      "logo": "https://your-website-url/logo.png",
+      "sameAs": [
+        "https://facebook.com/yourpage",
+        "https://twitter.com/yourprofile"
+      ],
+      "description": "বাংলাদেশের বিশ্বস্ত সংবাদ মাধ্যম। সর্বশেষ খবর জানুন প্রথমেই।"
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Siyam Rupali', 'SolaimanLipi', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* তারিখ এবং সময় স্টাইল */
+        .datetime-bar {
+            background: #333;
+            color: white;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* হেডার স্টাইল */
+        header {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: #d32f2f;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* হিরো সেকশন */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1200x500');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* নিউজ গ্রিড */
+        .section-title {
+            text-align: center;
+            margin: 2.5rem 0 1.5rem;
+            color: #b71c1c;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #d32f2f;
+            border-radius: 2px;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: #333;
+            line-height: 1.3;
+        }
+        
+        .news-date {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .news-excerpt {
+            margin-bottom: 1.2rem;
+            color: #555;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: #d32f2f;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            border: 2px solid #d32f2f;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            background: #d32f2f;
+            color: white;
+        }
+        
+        /* ফুটার */
+        footer {
+            background: linear-gradient(135deg, #b71c1c 0%, #7f0000 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            width: 100%;
+        }
+        
+        /* হোম বাটন */
+        .home-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #d32f2f;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .home-button:hover {
+            background: #b71c1c;
+            transform: translateY(-3px);
+        }
+        
+        /* রেসপনসিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .datetime-bar {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- তারিখ এবং সময় বার -->
+    <div class="datetime-bar">
+        <span id="datetime"></span>
+    </div>
+
+    <!-- হেডার -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <span class="logo-circle">PN</span> প্রভাত নিউজ
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">হোম</a></li>
+                    <li><a href="#">জাতীয়</a></li>
+                    <li><a href="#">আন্তর্জাতিক</a></li>
+                    <li><a href="#">খেলাধুলা</a></li>
+                    <li><a href="#">বিনোদন</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- হিরো সেকশন -->
+    <section class="hero">
+        <div class="container">
+            <h1>সর্বশেষ খবর জানুন প্রথমেই</h1>
+            <p>বাংলাদেশের বিশ্বস্ত সংবাদ মাধ্যম</p>
+        </div>
+    </section>
+
+    <!-- খবর সেকশন -->
+    <div class="container">
+        <h2 class="section-title">সর্বশেষ খবর</h2>
+        <div id="news-container" class="news-grid">
+            <!-- খবরগুলো এখানে লোড হবে -->
+        </div>
+    </div>
+
+    <!-- ফুটার -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">প্রভাত নিউজ</div>
+            <div class="footer-links">
+                <a href="#">আমাদের সম্পর্কে</a>
+                <a href="#">যোগাযোগ</a>
+                <a href="#">গোপনীয়তা নীতি</a>
+                <a href="#">আর্লিাকার</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; ২০২৫ প্রভাত নিউজ → আলো ছড়িয়ে যাক গ্রাম থেকে শহরে।</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- হোম বাটন -->
+    <a href="#" class="home-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+    </a>
+
+    <script>
+        // তারিখ এবং সময় আপডেট ফাংশন
+        function updateDateTime() {
+            const now = new Date();
+            
+            // বাংলা মাসের নাম
+            const monthsBn = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", 
+                             "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "نভেম্বর", "ডিসেম্বর"];
+            
+            // বাংলা দিনের নাম
+            const daysBn = ["রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবар", "শুক্রবার", "শনিবার"];
+            
+            const day = now.getDate();
+            const month = monthsBn[now.getMonth()];
+            const year = now.getFullYear();
+            const dayName = daysBn[now.getDay()];
+            
+            // সময় ফরম্যাট করা
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            hours = hours % 12;
+            hours = hours ? hours : 12; // 0 should be 12
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            
+            const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+            const dateString = `${day} ${month}, ${year} | ${dayName} | ${timeString}`;
+            
+            document.getElementById('datetime').textContent = dateString;
+        }
+        
+        // প্রতি সেকেন্ডে তারিখ এবং সময় আপডেট
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // প্রথমবার চালানোর জন্য
+        
+        // ডেটা স্টোরেজ (লোকালস্টোরেজ ব্যবহার করে)
+        let newsData = JSON.parse(localStorage.getItem('provatNewsData')) || [];
+        
+        // পৃষ্ঠা লোড হলে খবরগুলো দেখাবে
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNews();
+        });
+        
+        // খবর লোড করার ফাংশন
+        function loadNews() {
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = '';
+            
+            if (newsData.length === 0) {
+                newsContainer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                        <h3>কোনো খবর পাওয়া যায়নি</h3>
+                        <p>প্রথম খবরটি পোস্ট করতে নিচের এডমিন বাটন ব্যবহার করুন</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            newsData.forEach(news => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'news-card';
+                
+                // Google Drive লিংক প্রসেসিং
+                let imageUrl = news.image;
+                if (imageUrl.includes('drive.google.com')) {
+                    const match = imageUrl.match(/\/d\/(.+?)\//);
+                    if (match) {
+                        imageUrl = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
+                    }
+                }
+                
+                newsCard.innerHTML = `
+                    <img src="${imageUrl}" alt="${news.title}" class="news-image">
+                    <div class="news-content">
+                        <h3 class="news-title">${news.title}</h3>
+                        <span class="news-date">${news.date}</span>
+                        <p class="news-excerpt">${news.content.substring(0, 100)}...</p>
+                        <a href="#" class="read-more" onclick="viewNews(${news.id})">বিস্তারিত পড়ুন</a>
+                    </div>
+                `;
+                
+                newsContainer.appendChild(newsCard);
+            });
+        }
+        
+        // সম্পূর্ণ খবর দেখানোর ফাংশন
+        function viewNews(id) {
+            const news = newsData.find(item => item.id === id);
+            if (news) {
+                // Google Drive লিংক প্রসেসিং
+                let imageUrl = news.image;
+                if (imageUrl.includes('drive.google.com')) {
+                    const match = imageUrl.match(/\/d\/(.+?)\//);
+                    if (match) {
+                        imageUrl = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
+                    }
+                }
+                
+                // মডাল বা আলাদা পেজে সম্পূর্ণ খবর দেখানো যেতে পারে
+                alert(`সম্পূর্ণ খবর:\n\nশিরোনাম: ${news.title}\n\nপ্রকাশের তারিখ: ${news.date}\n\nবিস্তারিত: ${news.content}`);
+            }
+        }
+    </script>
+</body>
+</html>
